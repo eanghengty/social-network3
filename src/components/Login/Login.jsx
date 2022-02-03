@@ -11,7 +11,9 @@ const Login=()=>{
   const navigate = useNavigate();
   const responseGoogle = (response) => {
     localStorage.setItem('user', JSON.stringify(response.profileObj));
-    const { name,googleId, imageUrl } = response.profileObj;
+    const { name} = response.profileObj
+    const {googleId} = response.profileObj
+    const {imageUrl} = response.profileObj
     
     const doc = {
       _id: googleId,
