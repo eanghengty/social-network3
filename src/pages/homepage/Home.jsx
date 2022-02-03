@@ -1,12 +1,12 @@
-import Navbar from "../../components/Navbar/Navbar"
+
 import {userQuery} from "../../utils/data"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Posts from "../../components/post/Posts"
-import RightSideBar from "../../components/rightSideBar/RightSideBar"
+
 import { useEffect, useState, useRef } from "react"
-import User from "../../components/user/User"
+
 import {client} from '../../sanity'
-import logo from '../../assets/logo.jpeg'
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars, faHamburger, faTimes } from "@fortawesome/free-solid-svg-icons"
 import {Link} from 'react-router-dom'

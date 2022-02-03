@@ -73,7 +73,7 @@ const UserProfile = () => {
           <div className="absolute top-0 z-1 right-0 p-2">
             {userId === User.googleId && (
               <GoogleLogout
-                clientId={'704232463180-185r906jm9s84o9p6kbvp07slok04so1.apps.googleusercontent.com'}
+                clientId={"704232463180-185r906jm9s84o9p6kbvp07slok04so1.apps.googleusercontent.com"}
                 render={(renderProps) => (
                   <button
                     type="button"
