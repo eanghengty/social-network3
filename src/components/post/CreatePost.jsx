@@ -7,7 +7,7 @@ import {categories} from '../../utils/data'
 import { client } from '../../sanity';
 import Spinner from '../loading/Spinner';
 import { faTrash, faUpload } from '@fortawesome/free-solid-svg-icons';
-
+//create
 const CreatePost = ({ user }) => {
   const [title, setTitle] = useState('');
   const [about, setAbout] = useState('');
@@ -19,11 +19,11 @@ const CreatePost = ({ user }) => {
   const [wrongImageType, setWrongImageType] = useState(false);
 
   const navigate = useNavigate();
-
+  //function upload image when click
   const uploadImage = (e) => {
     const selectedFile = e.target.files[0];
-    // uploading asset to sanity
-    if (selectedFile.type === 'image/png' || selectedFile.type === 'image/svg' || selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/gif' || selectedFile.type === 'image/tiff') {
+    // compare if not image type then stop loading
+    if ( selectedFile.type === 'image/png' || selectedFile.type === 'image/svg' || selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/gif' || selectedFile.type === 'image/tiff') {
       setWrongImageType(false);
       setLoading(true);
       client.assets
@@ -40,7 +40,7 @@ const CreatePost = ({ user }) => {
       setWrongImageType(true);
     }
   };
-
+  //create post
   const createPost = () => {
     if (title && about && imageAsset?._id && category) {
       const doc = {
@@ -62,6 +62,7 @@ const CreatePost = ({ user }) => {
         },
         category,
       };
+      //after created jump back to home
       client.create(doc).then(() => {
         navigate('/');
       });

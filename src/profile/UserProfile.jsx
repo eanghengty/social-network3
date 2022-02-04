@@ -9,48 +9,54 @@ import Spinner from '../components/loading/Spinner';
 
 const activeBtnStyles = 'bg-green-500 text-white font-bold p-3 rounded-full w-30 outline-none';
 const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-3 rounded-full w-20 outline-none';
-
+//profile section
 const UserProfile = () => {
   const [user, setUser] = useState();
   const [posts, setposts] = useState();
+  //default showing text is Posted
   const [text, setText] = useState('Posted');
+  //default value posted
   const [activeBtn, setActiveBtn] = useState('posted');
+  //navigate the route
   const navigate = useNavigate();
   const { userId } = useParams();
-
+  //to get the user info fir queries
   const User = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
-
+  //do the query only when userid change
   useEffect(() => {
     const query = userQuery(userId);
     client.fetch(query).then((data) => {
       setUser(data[0]);
     });
   }, [userId]);
-
+  //query only when the text and userid change
   useEffect(() => {
     if (text === 'Posted') {
+      //pass the user id and see if it true
       const createdpostsQuery = userCreatedpostsQuery(userId);
-
+      //if it then fetch the data
       client.fetch(createdpostsQuery).then((data) => {
         setposts(data);
       });
     } else {
+      //pass user id to the 
       const savedpostsQuery = userSavedpostsQuery(userId);
-
+      //if it then fetch the data
       client.fetch(savedpostsQuery).then((data) => {
         setposts(data);
       });
     }
   }, [text, userId]);
-
+  //clear localStorage when logout
   const logout = () => {
     localStorage.clear();
 
     navigate('/login');
   };
 
+  //if no user infinite time spinner or loading
   if (!user) return <Spinner message="Loading profile" />;
-
+  //else
   return (
     <div className="relative pb-2 h-full justify-center items-center">
       <div className="flex flex-col pb-5">
@@ -58,7 +64,7 @@ const UserProfile = () => {
           <div className="flex flex-col justify-center items-center">
             <img
               className=" w-full h-370 2xl:h-510 shadow-lg object-cover"
-              src="https://source.unsplash.com/1600x900/?nature,photography,technology"
+              src="https://images.pexels.com/photos/296282/pexels-photo-296282.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
               alt="user-pic"
             />
             <img
@@ -71,6 +77,7 @@ const UserProfile = () => {
             {user.userName}
           </h1>
           <div className="absolute top-0 z-1 right-0 p-2">
+            {/* logoutbtn */}
             {userId === User.googleId && (
               <GoogleLogout
                 clientId={"704232463180-185r906jm9s84o9p6kbvp07slok04so1.apps.googleusercontent.com"}
@@ -97,6 +104,7 @@ const UserProfile = () => {
               setText(e.target.textContent);
               setActiveBtn('posted');
             }}
+            // dynamic style to the btn post , like and following base on select
             className={`${activeBtn === 'posted' ? activeBtnStyles : notActiveBtnStyles}`}
           >
             Posted
@@ -107,6 +115,7 @@ const UserProfile = () => {
               setText(e.target.textContent);
               setActiveBtn('liked');
             }}
+            // dynamic style to the btn post , like and following base on select
             className={`${activeBtn === 'liked' ? activeBtnStyles : notActiveBtnStyles}`}
           >
             Liked
@@ -117,16 +126,17 @@ const UserProfile = () => {
               setText(e.target.textContent);
               setActiveBtn('followed');
             }}
+            // dynamic style to the btn post , like and following base on select
             className={`${activeBtn === 'followed' ? activeBtnStyles : notActiveBtnStyles}`}
           >
             Following
           </button>
         </div>
-
+        {/* render all post as masonry layout by pass all data info to */}
         <div className="px-2">
           <MasonryLayout posts={posts} />
         </div>
-
+        {/* if no post then it return statement */}
         {posts?.length === 0 && (
           activeBtn === 'followed' ? <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
           No users Found!

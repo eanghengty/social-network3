@@ -2,12 +2,13 @@ import Home from "./pages/homepage/Home"
 import Login from "./components/Login/Login"
 import {Routes,Route,useNavigate} from 'react-router-dom'
 import {useEffect} from 'react'
+
 const  App=()=>{
   const navigate = useNavigate();
 
   useEffect(() => {
     const User = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
-
+    //protected route void no user can navigate through all route beside login
     if (!User) navigate('/login');
   }, []);
     return (

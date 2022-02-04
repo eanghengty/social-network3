@@ -27,12 +27,13 @@ const Home =()=>{
   useEffect(() => {
 
     const query = userQuery(userInfo?.googleId);
-    //if it true then it set user to the first user
+    //if it true then it set user to the first user that ? mean if no then do nothing
     client.fetch(query).then((data) => {
       setUser(data[0]);
     });
   }, []);
 
+  //everytime screen render set to 0,0
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0);
   });
@@ -62,6 +63,7 @@ const Home =()=>{
         )}
       </div>
       <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
+          {/* allpost + userprofile depend on home */}
         <Routes>
           <Route path="/user-profile/:userId" element={<UserProfile />} />
           <Route path="/*" element={<Posts user={user && user} />} />

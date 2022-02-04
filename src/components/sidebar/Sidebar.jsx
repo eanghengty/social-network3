@@ -2,12 +2,12 @@ import { faHome, faPizzaSlice, faSchool } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {NavLink,Link } from 'react-router-dom';
 import {categories} from '../../utils/data'
-
+//style when each category select
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-green-300  transition-all duration-200 ease-in-out capitalize';
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold text-blue-300 border-r-2 border-indigo-300 transition-all duration-200 ease-in-out capitalize';
 
 const Sidebar = ({ closeToggle, users }) => {
-
+  //function toggle to close 
   const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false);
   };
@@ -31,7 +31,7 @@ const Sidebar = ({ closeToggle, users }) => {
             <FontAwesomeIcon icon={faHome} clasName=""></FontAwesomeIcon> Home
           </NavLink>
           <h3 className="mt-2 px-5  text-xl">Food cateogries</h3>
-          {categories.slice(0, categories.length -2).map((category) => (
+          {categories.slice(0, categories.length -3).map((category) => (
             <NavLink
               to={`/category/${category.name}`}
               className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
@@ -44,7 +44,7 @@ const Sidebar = ({ closeToggle, users }) => {
             
           ))}
           <h3 className="mt-2 px-5 text-xl">Place categories</h3>
-          {categories.slice(3, categories.length).map((category) => (
+          {categories.slice(7, categories.length).map((category) => (
             <NavLink
               to={`/category/${category.name}`}
               className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}

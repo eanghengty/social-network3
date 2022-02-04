@@ -1,7 +1,7 @@
 import "./Navbar.css"
 import { faBell, faChartBar, faComments, faHome, faPersonBooth, faSearch, faUser } from "@fortawesome/free-solid-svg-icons"
 
-import logo from '../../assets/blacklogo.png'
+
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
