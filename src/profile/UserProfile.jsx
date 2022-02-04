@@ -80,7 +80,7 @@ const UserProfile = () => {
             {/* logoutbtn */}
             {userId === User.googleId && (
               <GoogleLogout
-                clientId={"704232463180-185r906jm9s84o9p6kbvp07slok04so1.apps.googleusercontent.com"}
+                clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
                 render={(renderProps) => (
                   <button
                     type="button"

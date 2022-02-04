@@ -24,7 +24,7 @@ const PostDetail = ({ user }) => {
       client.fetch(`${query}`).then((data) => {
         //data object
         setPostDetail(data[0]);
-        console.log(data);
+        // console.log(data);
         if (data[0]) {
           const query1 = postDetailMorepostQuery(data[0]);
           //fetch which post has the same category
