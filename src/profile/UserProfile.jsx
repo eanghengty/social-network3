@@ -133,18 +133,21 @@ const UserProfile = () => {
           </button>
         </div>
         {/* render all post as masonry layout by pass all data info to */}
+
+        
         <div className="px-2">
-          <MasonryLayout posts={posts} />
-        </div>
+        <MasonryLayout posts={posts} />
+      </div>
+        
         {/* if no post then it return statement */}
-        {posts?.length === 0 && (
-          activeBtn === 'followed' ? <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
-          No users Found!
-        </div> : <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
+        {posts?.length === 0 && activeBtn !== 'followed' && (
+           <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
           No posts Found!
         </div>
+        )  
+        }
         
-        )}
+        
       </div>
 
     </div>

@@ -38,6 +38,7 @@ const Post = ({post}) => {
         .patch(id)
         .setIfMissing({ save: [] })
         //insert add the end of the save array
+        
         .insert('after', 'save[-1]', [{
           _key: uuidv4(),//get unique id 
           userId: user?.googleId,

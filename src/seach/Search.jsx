@@ -4,6 +4,7 @@ import MasonryLayout from '../layout/MasonryLayout'
 import { client } from '../sanity'
 import { feedQuery, searchQuery } from '../utils/data'
 import Spinner from '../components/loading/Spinner'
+
 //search page
 const Search = ({ searchTerm }) => {
   const [posts, setPosts] = useState()

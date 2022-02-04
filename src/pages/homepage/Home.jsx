@@ -2,7 +2,6 @@
 import {userQuery} from "../../utils/data"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Posts from "../../components/post/Posts"
-
 import { useEffect, useState, useRef } from "react"
 
 import {client} from '../../sanity'
@@ -13,6 +12,9 @@ import {Link} from 'react-router-dom'
 import './Home.css'
 import {Routes, Route} from 'react-router-dom'
 import UserProfile from "../../profile/UserProfile"
+
+
+
 
 const Home =()=>{
 
@@ -42,6 +44,7 @@ const Home =()=>{
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
         <Sidebar users={user && user} />
+        {/*  */}
       </div>
       <div className="flex md:hidden flex-row bg-gray-200">
         <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">

@@ -1,10 +1,10 @@
 import {GoogleLogin} from 'react-google-login'
 import { useNavigate } from 'react-router-dom'
-import {FcGoogle} from 'react-icons/fc'
+import {FcGoogle, FcKey} from 'react-icons/fc'
 import logo from '../../assets/whitelogo.png'
 import backgroud from '../../assets/background.jpg'
 import {client} from '../../sanity'
-
+import {Link} from 'react-router-dom'
 
 const Login=()=>{
 
@@ -34,7 +34,7 @@ const Login=()=>{
         <img
           src={backgroud}
           
-          
+           
           className="w-full h-full object-cover"
         ></img>
 
@@ -60,6 +60,11 @@ const Login=()=>{
               onFailure={responseGoogle}
               cookiePolicy="single_host_origin"
             />
+          </div>
+          <div className="shadow-2xl mt-3">
+          <Link to="/loginwithemail" className="bg-slate-800 flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none">
+                  <FcKey className="mr-4" /> <span className="text-xl text-white">Sign in with email</span>
+                </Link>
           </div>
           <h1 className="text-xl text-white mt-3">We get to live in the time that we get to use social media as a tool.</h1>
         </div>
