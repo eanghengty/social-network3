@@ -18,12 +18,14 @@ const Post = ({post}) => {
   const user = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
   //delete base on id
   const deletePost = (id) => {
+    if(window.confirm('Are you sure you want to delete this post?')){
     client
       .delete(id)
       .then(() => {
         window.location.reload();
       });
   };
+}
   //post that liked
   let alreadySaved = post?.save?.filter((item) => item?.postedBy?._id === user?.googleId);
 

@@ -2,15 +2,23 @@ import { faHome, faPizzaSlice, faSchool } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {NavLink,Link } from 'react-router-dom';
 import {categories} from '../../utils/data'
-
+import { GoogleLogout } from 'react-google-login';
+import {useNavigate} from 'react-router-dom'
 //style when each category select
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-green-300  transition-all duration-200 ease-in-out capitalize';
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold text-blue-300 border-r-2 border-indigo-300 transition-all duration-200 ease-in-out capitalize';
 
 const Sidebar = ({ closeToggle, users }) => {
+  const navigate = useNavigate();
   //function toggle to close 
   const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false);
+  };
+  //clear localStorage when logout
+  const logout = () => {
+    localStorage.clear();
+
+    navigate('/login');
   };
  
   
@@ -77,7 +85,28 @@ const Sidebar = ({ closeToggle, users }) => {
           
 
         </div>
+       
       </div>
+      <div className="top-0 z-1 right-0 p-2">
+            {/* logoutbtn */}
+            {(
+              <GoogleLogout
+                clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
+                render={(renderProps) => (
+                  <button
+                    type="button"
+                    className=" bg-slate-300 px-5 py-2 rounded-full cursor-pointer outline-none shadow-md "
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                  >
+                    Logout
+                  </button>
+                )}
+                onLogoutSuccess={logout}
+                cookiePolicy="single_host_origin"
+              />
+            )}
+          </div>
       
     </div>
   );

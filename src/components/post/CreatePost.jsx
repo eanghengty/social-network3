@@ -114,7 +114,7 @@ const CreatePost = ({ user }) => {
             type="url"
             vlaue={destination}
             onChange={(e) => setDestination(e.target.value)}
-            placeholder="Webiste link"
+            placeholder="Location Link"
             className="text-white outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2 bg-transparent"
           />
 

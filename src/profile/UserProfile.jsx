@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { GoogleLogout } from 'react-google-login';
+
 
 import { userCreatedpostsQuery, userQuery, userSavedpostsQuery } from '../utils/data';
 import { client } from '../sanity';
@@ -47,12 +47,7 @@ const UserProfile = () => {
       });
     }
   }, [text, userId]);
-  //clear localStorage when logout
-  const logout = () => {
-    localStorage.clear();
-
-    navigate('/login');
-  };
+  
 
   //if no user infinite time spinner or loading
   if (!user) return <Spinner message="Loading profile" />;
@@ -76,26 +71,7 @@ const UserProfile = () => {
           <h1 className="font-bold text-3xl text-center mt-3">
             {user.userName}
           </h1>
-          <div className="absolute top-0 z-1 right-0 p-2">
-            {/* logoutbtn */}
-            {userId === User.googleId && (
-              <GoogleLogout
-                clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
-                render={(renderProps) => (
-                  <button
-                    type="button"
-                    className=" bg-white  rounded-full cursor-pointer outline-none shadow-md p-3"
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                  >
-                    Logout
-                  </button>
-                )}
-                onLogoutSuccess={logout}
-                cookiePolicy="single_host_origin"
-              />
-            )}
-          </div>
+         
         </div>
         <div className="text-center mb-7">
           <button
